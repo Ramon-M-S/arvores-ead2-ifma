@@ -1,0 +1,2 @@
+P1: Valor (50) ; Valor (80) ; Valor (200) ; 
+P1: Valor (30) ; Valor (70) ; Valor (80) ; 

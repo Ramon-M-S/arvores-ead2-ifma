@@ -1,5 +1,7 @@
 package treeAVL;
 
+import java.util.Arrays;
+
 public class AVLTree<T extends Comparable<T>> {
 
     // Classe Nó
@@ -38,6 +40,11 @@ public class AVLTree<T extends Comparable<T>> {
         this.raiz = null;
     }
 
+    public enum TipoPercurso {
+        EM_ORDEM,
+        PRE_ORDEM,
+        POS_ORDEM
+    }
 
     public void inserir(T dado) {
         if (dado == null) {
@@ -292,6 +299,100 @@ public class AVLTree<T extends Comparable<T>> {
 
         // Retorna o nó (possivelmente reestruturado)
         return no;
+    }
+
+    public interface AcaoSobreNo<T> {
+        void executar(T dado);
+    }
+    public void percorrerEmOrdem(AcaoSobreNo<T> acao) {
+        if (acao == null) {
+            throw new IllegalArgumentException("O objeto de ação não pode ser nulo.");
+        }
+        percorrerEmOrdemRecursivo(this.raiz, acao);
+    }
+
+    private void percorrerEmOrdemRecursivo(NoAvl<T> no, AcaoSobreNo<T> acao) {
+        if (no != null) {
+            percorrerEmOrdemRecursivo(no.getEsquerda(), acao);
+            // REATORADO: Executa a nossa própria interface
+            acao.executar(no.getDado());
+            percorrerEmOrdemRecursivo(no.getDireita(), acao);
+        }
+    }
+
+    public void percorrerPreOrdem(AcaoSobreNo<T> acao) {
+        if (acao == null) {
+            throw new IllegalArgumentException("O objeto de ação não pode ser nulo.");
+        }
+        percorrerPreOrdemRecursivo(this.raiz, acao);
+    }
+
+    private void percorrerPreOrdemRecursivo(NoAvl<T> no, AcaoSobreNo<T> acao) {
+        if (no != null) {
+            acao.executar(no.getDado());
+            percorrerPreOrdemRecursivo(no.getEsquerda(), acao);
+            percorrerPreOrdemRecursivo(no.getDireita(), acao);
+        }
+    }
+
+    public void percorrerPosOrdem(AcaoSobreNo<T> acao) {
+        if (acao == null) {
+            throw new IllegalArgumentException("O objeto de ação não pode ser nulo.");
+        }
+        percorrerPosOrdemRecursivo(this.raiz, acao);
+    }
+
+    private void percorrerPosOrdemRecursivo(NoAvl<T> no, AcaoSobreNo<T> acao) {
+        if (no != null) {
+            percorrerPosOrdemRecursivo(no.getEsquerda(), acao);
+            percorrerPosOrdemRecursivo(no.getDireita(), acao);
+            acao.executar(no.getDado());
+        }
+    }
+
+    public void imprimirEmOrdem() {
+        System.out.print("Em-Ordem: ");
+        if (this.raiz == null) {
+            System.out.println("[Árvore Vazia]");
+            return;
+        }
+        percorrerEmOrdem(new AcaoSobreNo<T>() {
+            @Override
+            public void executar(T dado) {
+                System.out.print(dado + " ");
+            }
+        });
+        System.out.println();
+    }
+
+    public void imprimirPreOrdem() {
+        System.out.print("Pré-Ordem: ");
+        if (this.raiz == null) {
+            System.out.println("[Árvore Vazia]");
+            return;
+        }
+        percorrerPreOrdem(new AcaoSobreNo<T>() {
+            @Override
+            public void executar(T dado) {
+                System.out.print(dado + " ");
+            }
+        });
+        System.out.println();
+    }
+
+    public void imprimirPosOrdem() {
+        System.out.print("Pós-Ordem: ");
+        if (this.raiz == null) {
+            System.out.println("[Árvore Vazia]");
+            return;
+        }
+        percorrerPosOrdem(new AcaoSobreNo<T>() {
+            @Override
+            public void executar(T dado) {
+                System.out.print(dado + " ");
+            }
+        });
+        System.out.println();
     }
 
 }
