@@ -301,9 +301,18 @@ public class AVLTree<T extends Comparable<T>> {
         return no;
     }
 
+    /**
+     * Interface funcional que define uma ação a ser executada sobre os dados de cada nó.
+     * É usada nos percursos da árvore para aplicar uma operação genérica sobre os nós.
+     */
     public interface AcaoSobreNo<T> {
         void executar(T dado);
     }
+
+    /**
+     * Realiza o percurso Em-Ordem (esquerda → raiz → direita) na árvore.
+     * Aplica a ação definida pelo usuário em cada nó visitado.
+     */
     public void percorrerEmOrdem(AcaoSobreNo<T> acao) {
         if (acao == null) {
             throw new IllegalArgumentException("O objeto de ação não pode ser nulo.");
@@ -311,15 +320,21 @@ public class AVLTree<T extends Comparable<T>> {
         percorrerEmOrdemRecursivo(this.raiz, acao);
     }
 
+    /**
+     * Método recursivo auxiliar para o percurso Em-Ordem.
+     */
     private void percorrerEmOrdemRecursivo(NoAvl<T> no, AcaoSobreNo<T> acao) {
         if (no != null) {
             percorrerEmOrdemRecursivo(no.getEsquerda(), acao);
-            // REATORADO: Executa a nossa própria interface
             acao.executar(no.getDado());
             percorrerEmOrdemRecursivo(no.getDireita(), acao);
         }
     }
 
+    /**
+     * Realiza o percurso Pré-Ordem (raiz → esquerda → direita) na árvore.
+     * Aplica a ação definida em cada nó visitado.
+     */
     public void percorrerPreOrdem(AcaoSobreNo<T> acao) {
         if (acao == null) {
             throw new IllegalArgumentException("O objeto de ação não pode ser nulo.");
@@ -327,6 +342,9 @@ public class AVLTree<T extends Comparable<T>> {
         percorrerPreOrdemRecursivo(this.raiz, acao);
     }
 
+    /**
+     * Método recursivo auxiliar para o percurso Pré-Ordem.
+     */
     private void percorrerPreOrdemRecursivo(NoAvl<T> no, AcaoSobreNo<T> acao) {
         if (no != null) {
             acao.executar(no.getDado());
@@ -335,6 +353,10 @@ public class AVLTree<T extends Comparable<T>> {
         }
     }
 
+    /**
+     * Realiza o percurso Pós-Ordem (esquerda → direita → raiz) na árvore.
+     * Aplica a ação definida em cada nó visitado.
+     */
     public void percorrerPosOrdem(AcaoSobreNo<T> acao) {
         if (acao == null) {
             throw new IllegalArgumentException("O objeto de ação não pode ser nulo.");
@@ -342,6 +364,9 @@ public class AVLTree<T extends Comparable<T>> {
         percorrerPosOrdemRecursivo(this.raiz, acao);
     }
 
+    /**
+     * Método recursivo auxiliar para o percurso Pós-Ordem.
+     */
     private void percorrerPosOrdemRecursivo(NoAvl<T> no, AcaoSobreNo<T> acao) {
         if (no != null) {
             percorrerPosOrdemRecursivo(no.getEsquerda(), acao);
@@ -350,6 +375,10 @@ public class AVLTree<T extends Comparable<T>> {
         }
     }
 
+    /**
+     * Imprime os elementos da árvore em ordem Em-Ordem.
+     * Utiliza uma implementação anônima da interface AcaoSobreNo para exibir os dados.
+     */
     public void imprimirEmOrdem() {
         System.out.print("Em-Ordem: ");
         if (this.raiz == null) {
@@ -365,6 +394,9 @@ public class AVLTree<T extends Comparable<T>> {
         System.out.println();
     }
 
+    /**
+     * Imprime os elementos da árvore em ordem Pré-Ordem.
+     */
     public void imprimirPreOrdem() {
         System.out.print("Pré-Ordem: ");
         if (this.raiz == null) {
@@ -380,6 +412,9 @@ public class AVLTree<T extends Comparable<T>> {
         System.out.println();
     }
 
+    /**
+     * Imprime os elementos da árvore em ordem Pós-Ordem.
+     */
     public void imprimirPosOrdem() {
         System.out.print("Pós-Ordem: ");
         if (this.raiz == null) {
@@ -394,5 +429,6 @@ public class AVLTree<T extends Comparable<T>> {
         });
         System.out.println();
     }
+
 
 }
