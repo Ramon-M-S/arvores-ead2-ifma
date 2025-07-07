@@ -52,17 +52,26 @@ Cada manual contém um **catálogo ilustrado de todas as possíveis correções*
 ---
 
 ## 💻 Estrutura do Projeto
-/src  
-├── treeAVL/  
-│     └── AVLTree.java           # Implementação da árvore AVL  
-|    └── RunAVL  
-├── treeRedBlack/  
-│    └── RedBlackTree.java      # Implementação da árvore Rubro-Negra  
-|    └── RunRedBlack  
+src/
+│
+├── arvores.txt            ← entrada de comandos  
+├── configArvores.txt      ← este guia de uso  
+│  
 ├── utils/  
-│    └── FileReader.java        # Leitura dos arquivos de comandos  
-├── arvores.txt                # Arquivo principal com comandos  
-├── manual_AVL.pdf  
-├── manual_RubroNegra.pdf  
-├── .gitignore  
-└── README.md  
+│   ├── AcaoSobreNo.java   ← interface para AVL  
+│   ├── LeitorArquivo.java ← (opcional para leitura auxiliar)  
+│  
+├── treeAVL/  
+│   ├── AVLTree.java       ← implementação AVL  
+│   ├── NoAvl.java         ← nó AVL  
+│   ├── RunAVL.java        ← classe main  
+│   ├── saidaAVL.txt       ← saída das operações  
+│  
+├── treeRedBlack/  
+│   ├── RedBlackTree.java  ← implementação Red-Black  
+│   ├── NoRB.java          ← nó Red-Black  
+│   ├── Cor.java           ← enum de cor  
+│   ├── AcaoTexto.java     ← interface para percursos  
+│   ├── RunRedBlack.java   ← classe main  
+│   ├── saidaRB.txt        ← saída das operações  
+└── README.md    
