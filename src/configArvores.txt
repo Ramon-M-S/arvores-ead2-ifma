@@ -1,86 +1,121 @@
-SISTEMA DE ÁRVORE BINÁRIA AVL OU RUBRO-NEGRA
+SISTEMA DE MANIPULAÇÃO DE ÁRVORES AVL E RUBRO-NEGRA
+===================================================
 
-===========================================
+PROJETO ESTRUTURADO EM JAVA
+Pasta base: /src
+
+===================================================
 1. OBJETIVO
-===========================================
-Este programa executa operações de inserção, remoção e impressão de percursos
-em uma árvore binária balanceada (AVL ou Rubro-Negra), com base em comandos
-descritos em um arquivo de entrada.
+===================================================
+Este projeto permite executar inserções, remoções e percursos
+em duas estruturas de árvore binária balanceada:
 
-A saída é gerada em um arquivo de texto contendo os resultados dos percursos
-solicitados.
+- AVL Tree      → Classe: treeAVL.RunAVL
+- Red-Black Tree → Classe: treeRedBlack.RunRedBlack
 
-===========================================
-2. ESTRUTURA DE ARQUIVOS
-===========================================
+O funcionamento é controlado por comandos contidos no arquivo:
+> src/arvores.txt
 
-- ENTRADA:  src/arvores.txt
-- SAÍDA AVL: src/treeAVL/saidaAVL.txt
-- SAÍDA  RB: src/treeRedBlack/saidaRB.txt
+O resultado das operações é gravado nos arquivos:
+- AVL:         src/treeAVL/saidaAVL.txt
+- Red-Black:   src/treeRedBlack/saidaRB.txt
 
-A entrada deve conter **um comando por linha**, conforme especificado abaixo.
+===================================================
+2. ESTRUTURA DE PASTAS E ARQUIVOS
+===================================================
 
-===========================================
-3. COMANDOS SUPORTADOS
-===========================================
+src/
+│
+├── arvores.txt            ← entrada de comandos
+├── configArvores.txt      ← este guia de uso
+│
+├── utils/
+│   ├── AcaoSobreNo.java   ← interface para AVL
+│   ├── LeitorArquivo.java ← (opcional para leitura auxiliar)
+│
+├── treeAVL/
+│   ├── AVLTree.java       ← implementação AVL
+│   ├── NoAvl.java         ← nó AVL
+│   ├── RunAVL.java        ← classe main
+│   ├── saidaAVL.txt       ← saída das operações
+│
+├── treeRedBlack/
+│   ├── RedBlackTree.java  ← implementação Red-Black
+│   ├── NoRB.java          ← nó Red-Black
+│   ├── Cor.java           ← enum de cor
+│   ├── AcaoTexto.java     ← interface para percursos
+│   ├── RunRedBlack.java   ← classe main
+│   ├── saidaRB.txt        ← saída das operações
 
-I-<número>
-→ Insere o número informado na árvore.
-Exemplo: I-15
+===================================================
+3. COMANDOS SUPORTADOS NO `arvores.txt`
+===================================================
 
-R-<número>
-→ Remove o número informado da árvore.
-Exemplo: R-10
+- I-<número>
+  → Insere o número na árvore
+  Ex: I-20
 
-P  ou P1
-→ Imprime os elementos da árvore em ordem **Em-Ordem**
-(esquerda → raiz → direita)
+- R-<número>
+  → Remove o número da árvore
+  Ex: R-10
 
-P2
-→ Imprime os elementos da árvore em **Pós-Ordem**
-(esquerda → direita → raiz)
+- P1  ou  P
+  → Imprime os elementos em Em-Ordem
+    (esquerda → raiz → direita)
 
-P3
-→ Imprime os elementos da árvore em **Pré-Ordem**
-(raiz → esquerda → direita)
+- P2
+  → Imprime os elementos em Pós-Ordem
+    (esquerda → direita → raiz)
 
-===========================================
-4. EXEMPLO DE USO - arquivo arvores.txt
-===========================================
+- P3
+  → Imprime os elementos em Pré-Ordem
+    (raiz → esquerda → direita)
+
+===================================================
+4. EXEMPLO DE ENTRADA (arvores.txt)
+===================================================
 
 I-10
+I-20
 I-5
-I-15
 R-5
 P1
 P2
 P3
 
-===========================================
-5. SAÍDA GERADA - arquivos saidaAVL.txt ou saidaRB.txt
-===========================================
+===================================================
+5. FORMATO DAS SAÍDAS
+===================================================
 
-P1: Valor (10) ; Valor (15) ;
-P2: Valor (15) ; Valor (10) ;
-P3: Valor (10) ; Valor (15) ;
+▶ Para AVL (saidaAVL.txt):
 
-(Se for árvore rubro-negra, também inclui a cor do nó:
-Ex: 10(P) ; 15(V))
+P1: Valor (10) ; Valor (20) ;
+P2: Valor (20) ; Valor (10) ;
+P3: Valor (10) ; Valor (20) ;
 
-===========================================
-6. OBSERVAÇÕES
-===========================================
+▶ Para Red-Black (saidaRB.txt):
 
-- Linhas em branco no arquivo de entrada são ignoradas.
-- Comandos inválidos são ignorados silenciosamente.
-- O arquivo 'saida.txt' é sobrescrito a cada execução.
-- Para Rubro-Negra, cores dos nós são exibidas na saída.
+P1: Valor (10, PRETO) ; Valor (20, VERMELHO) ;
+P2: Valor (20, VERMELHO) ; Valor (10, PRETO) ;
+P3: Valor (10, PRETO) ; Valor (20, VERMELHO) ;
 
-===========================================
-7. COMO EXECUTAR
-===========================================
+* A cor dos nós na Red-Black é mostrada após o valor.
 
-1. Crie o arquivo `src/arvores.txt` com os comandos desejados.
-2. Compile e execute a classe `RunAVL.java` ou `RunRedBlack.java`.
-3. Veja o resultado em src/treeAVL/saidaAVL.txt ou src/treeRedBlack/saidaRB.txt
+===================================================
+6. COMO EXECUTAR
+===================================================
+
+1. Edite o arquivo `src/arvores.txt` com os comandos desejados.
+2. Execute `RunAVL` para testar a árvore AVL.
+3. Execute `RunRedBlack` para testar a árvore Rubro-Negra.
+4. Verifique a saída nos arquivos `saidaAVL.txt` ou `saidaRB.txt`.
+
+===================================================
+7. OBSERVAÇÕES
+===================================================
+
+- O sistema ignora linhas em branco automaticamente.
+- Apenas inteiros são suportados como valores de entrada.
+- A saída é sobrescrita a cada execução.
+- Nenhuma biblioteca do pacote `java.util` é usada.
 
