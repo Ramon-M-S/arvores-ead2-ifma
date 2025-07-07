@@ -7,7 +7,7 @@ public class RunAVL {
         AVLTree<Integer> arvore = new AVLTree<>();
 
         String inputPath = "src/arvores.txt";
-        String outputPath = "src/saida.txt";
+        String outputPath = "src/treeAVL/saidaAVL.txt";
 
         try (
                 BufferedReader reader = new BufferedReader(new FileReader(inputPath));
@@ -19,15 +19,17 @@ public class RunAVL {
 
                 if (linha.isEmpty()) continue;
 
-                if (linha.startsWith("I-")) {
+                String comando = linha.toUpperCase(); // converte tudo para maiúsculo
+
+                if (comando.startsWith("I-")) {
                     int valor = Integer.parseInt(linha.substring(2));
                     arvore.inserir(valor);
 
-                } else if (linha.startsWith("R-")) {
+                } else if (comando.startsWith("R-")) {
                     int valor = Integer.parseInt(linha.substring(2));
                     arvore.remover(valor);
 
-                } else if (linha.equalsIgnoreCase("P") || linha.equalsIgnoreCase("P1")) {
+                } else if (comando.equals("P") || comando.equals("P1")) {
                     writer.write("P1: ");
                     arvore.percorrerEmOrdem(dado -> {
                         try {
@@ -38,7 +40,7 @@ public class RunAVL {
                     });
                     writer.newLine();
 
-                } else if (linha.equalsIgnoreCase("P2")) {
+                } else if (comando.equals("P2")) {
                     writer.write("P2: ");
                     arvore.percorrerPosOrdem(dado -> {
                         try {
@@ -49,7 +51,7 @@ public class RunAVL {
                     });
                     writer.newLine();
 
-                } else if (linha.equalsIgnoreCase("P3")) {
+                } else if (comando.equals("P3")) {
                     writer.write("P3: ");
                     arvore.percorrerPreOrdem(dado -> {
                         try {
@@ -61,6 +63,7 @@ public class RunAVL {
                     writer.newLine();
                 }
             }
+
 
             System.out.println("Operações concluídas. Verifique o arquivo 'saida.txt'.");
 
