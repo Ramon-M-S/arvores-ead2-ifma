@@ -1,0 +1,86 @@
+SISTEMA DE ÁRVORE BINÁRIA AVL OU RUBRO-NEGRA
+
+===========================================
+1. OBJETIVO
+===========================================
+Este programa executa operações de inserção, remoção e impressão de percursos
+em uma árvore binária balanceada (AVL ou Rubro-Negra), com base em comandos
+descritos em um arquivo de entrada.
+
+A saída é gerada em um arquivo de texto contendo os resultados dos percursos
+solicitados.
+
+===========================================
+2. ESTRUTURA DE ARQUIVOS
+===========================================
+
+- ENTRADA:  src/arvores.txt
+- SAÍDA AVL: src/treeAVL/saidaAVL.txt
+- SAÍDA  RB: src/treeRedBlack/saidaRB.txt
+
+A entrada deve conter **um comando por linha**, conforme especificado abaixo.
+
+===========================================
+3. COMANDOS SUPORTADOS
+===========================================
+
+I-<número>
+→ Insere o número informado na árvore.
+Exemplo: I-15
+
+R-<número>
+→ Remove o número informado da árvore.
+Exemplo: R-10
+
+P  ou P1
+→ Imprime os elementos da árvore em ordem **Em-Ordem**
+(esquerda → raiz → direita)
+
+P2
+→ Imprime os elementos da árvore em **Pós-Ordem**
+(esquerda → direita → raiz)
+
+P3
+→ Imprime os elementos da árvore em **Pré-Ordem**
+(raiz → esquerda → direita)
+
+===========================================
+4. EXEMPLO DE USO - arquivo arvores.txt
+===========================================
+
+I-10
+I-5
+I-15
+R-5
+P1
+P2
+P3
+
+===========================================
+5. SAÍDA GERADA - arquivos saidaAVL.txt ou saidaRB.txt
+===========================================
+
+P1: Valor (10) ; Valor (15) ;
+P2: Valor (15) ; Valor (10) ;
+P3: Valor (10) ; Valor (15) ;
+
+(Se for árvore rubro-negra, também inclui a cor do nó:
+Ex: 10(P) ; 15(V))
+
+===========================================
+6. OBSERVAÇÕES
+===========================================
+
+- Linhas em branco no arquivo de entrada são ignoradas.
+- Comandos inválidos são ignorados silenciosamente.
+- O arquivo 'saida.txt' é sobrescrito a cada execução.
+- Para Rubro-Negra, cores dos nós são exibidas na saída.
+
+===========================================
+7. COMO EXECUTAR
+===========================================
+
+1. Crie o arquivo `src/arvores.txt` com os comandos desejados.
+2. Compile e execute a classe `RunAVL.java` ou `RunRedBlack.java`.
+3. Veja o resultado em src/treeAVL/saidaAVL.txt ou src/treeRedBlack/saidaRB.txt
+
