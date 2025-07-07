@@ -67,7 +67,7 @@ public class RunRedBlack {
         arvore.percorrerPreOrdem(new AcaoTexto() {
             public void executar(String texto) {
                 try {
-                    writer.write(texto + " ; ");
+                    writer.write(texto + "; ");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -80,7 +80,7 @@ public class RunRedBlack {
         arvore.percorrerPosOrdem(new AcaoTexto() {
             public void executar(String texto) {
                 try {
-                    writer.write(texto + " ; ");
+                    writer.write(texto + "; ");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

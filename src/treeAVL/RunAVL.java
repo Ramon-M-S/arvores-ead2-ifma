@@ -33,7 +33,7 @@ public class RunAVL {
                     writer.write("P1: ");
                     arvore.percorrerEmOrdem(dado -> {
                         try {
-                            writer.write("Valor (" + dado + ") ; ");
+                            writer.write("Valor(" + dado + ") ; ");
                         } catch (IOException e) {
                             throw new RuntimeException("Erro ao escrever no arquivo.", e);
                         }
@@ -44,7 +44,7 @@ public class RunAVL {
                     writer.write("P2: ");
                     arvore.percorrerPosOrdem(dado -> {
                         try {
-                            writer.write("Valor (" + dado + ") ; ");
+                            writer.write("Valor(" + dado + ") ; ");
                         } catch (IOException e) {
                             throw new RuntimeException("Erro ao escrever no arquivo.", e);
                         }
@@ -55,7 +55,7 @@ public class RunAVL {
                     writer.write("P3: ");
                     arvore.percorrerPreOrdem(dado -> {
                         try {
-                            writer.write("Valor (" + dado + ") ; ");
+                            writer.write("Valor(" + dado + ") ; ");
                         } catch (IOException e) {
                             throw new RuntimeException("Erro ao escrever no arquivo.", e);
                         }
